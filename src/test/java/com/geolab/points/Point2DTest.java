@@ -7,6 +7,8 @@ import org.junit.Test;
 
 public class Point2DTest {
 
+    public static final double EPSILON = 1e-14;
+
     @Test
     public void consistencyTest() {
         Point2D p1 = new Point2D(1.0, 1.0);
@@ -48,7 +50,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_addPoint() {
+    public void addPointTest() {
         Point2D p1 = new Point2D(1.0, 1.0);
         Point2D p2 = new Point2D(1.0, 1.0);
         Point2D pAddition = new Point2D(2.0, 2.0);
@@ -58,7 +60,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_addCoordiantes() {
+    public void addCoordiantesTest() {
         Point2D p1 = new Point2D(1.0, 1.0);
         Point2D pAddition = new Point2D(2.0, 2.0);
         p1.addTo(1.0, 1.0);
@@ -66,7 +68,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_subPoint() {
+    public void subPointTest() {
         Point2D p1 = new Point2D(1.0, 1.0);
         Point2D p2 = new Point2D(1.0, 1.0);
         Point2D pSubtraction = new Point2D(0.0, 0.0);
@@ -75,7 +77,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_subCoordiantes() {
+    public void subCoordiantesTest() {
         Point2D p1 = new Point2D(1.0, 1.0);
         Point2D pSubtraction = new Point2D(0.0, 0.0);
         p1.subtractFrom(1.0, 1.0);
@@ -83,7 +85,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_mulPoint() {
+    public void mulPointTest() {
         Point2D p1 = new Point2D(2.0, 2.0);
         Point2D p2 = new Point2D(2.0, 2.0);
         Point2D pMul = new Point2D(4.0, 4.0);
@@ -92,7 +94,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_mulCoordiantes() {
+    public void mulCoordiantesTest() {
         Point2D p1 = new Point2D(2.0, 2.0);
         Point2D pMul = new Point2D(4.0, 4.0);
         p1.multiply(2.0, 2.0);
@@ -100,7 +102,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_divPoint() {
+    public void divPointTest() {
         Point2D p1 = new Point2D(2.0, 2.0);
         Point2D p2 = new Point2D(2.0, 2.0);
         Point2D pDiv = new Point2D(1.0, 1.0);
@@ -109,7 +111,7 @@ public class Point2DTest {
     }
 
     @Test
-    public void additionTest_divCoordiantes() {
+    public void divCoordiantesTest() {
         Point2D p1 = new Point2D(2.0, 2.0);
         Point2D pDiv = new Point2D(1.0, 1.0);
         p1.divide(2.0, 2.0);
@@ -117,10 +119,18 @@ public class Point2DTest {
     }
 
     @Test
-    public void swapCoordiantes() {
+    public void swapCoordiantesTest() {
         Point2D p1 = new Point2D(-1.0, 1.0);
         Point2D swaped = new Point2D(1.0, -1.0);
         p1.swapCoordiantes();
         assertEquals(swaped, p1);
+    }
+
+    @Test
+    public void point2DRotationTest() {
+        Point2D p1 = new Point2D(0.0, 1.0);
+        p1.rotateAroundOrigin(Math.toRadians(90.0));
+        assertEquals(-1.0, p1.getX(), EPSILON);
+        assertEquals(0.0, p1.getY(), EPSILON);
     }
 }

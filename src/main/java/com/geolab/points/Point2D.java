@@ -76,8 +76,12 @@ public class Point2D {
     }
 
     public void rotateAroundOrigin(double radian) {
-        this.x = this.x * Math.cos(radian) - this.y * Math.sin(radian);
-        this.y = this.x * Math.sin(radian) + this.y * Math.cos(radian);
+        double tempX;
+        double tempY;
+        tempX = this.x * Math.cos(radian) - this.y * Math.sin(radian);
+        tempY = this.x * Math.sin(radian) + this.y * Math.cos(radian);
+        this.x = tempX;
+        this.y = tempY;
     }
 
     @Override

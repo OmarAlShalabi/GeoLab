@@ -116,7 +116,7 @@ public class Vector2D {
     private void computeSlope() {
         double deltaY = this.p2.getY() - this.p1.getY();
         double deltaX = this.p2.getX() - this.p1.getX();
-        if (deltaY <= MainConstants.EPSILON && deltaY >= -1 * MainConstants.EPSILON) {
+        if (deltaX <= MainConstants.EPSILON && deltaX >= -1 * MainConstants.EPSILON) {
             this.slope = Double.NaN;
         } else {
             this.slope = deltaY / deltaX;
@@ -132,7 +132,7 @@ public class Vector2D {
             return false;
         }
         Vector2D objVector2D = (Vector2D) obj;
-        return objVector2D.getStartingPoint() == this.p1 && objVector2D.getEndPoint() == this.p2;
+        return objVector2D.getStartingPoint().equals(this.p1) && objVector2D.getEndPoint().equals(this.p2);
     }
 
     @Override
@@ -145,8 +145,8 @@ public class Vector2D {
     @Override
     public String toString() {
         return String.format(
-                "Vector2D : { Starting Point: %f, Ending Point: %f, real-part: %f, imaginary-part: %f,"
-                        + "Vector norm: %f, Vector angle: %f, Slope: %f",
+                "Vector2D : { Starting Point: (%s), Ending Point: (%s), real-part: %f, imaginary-part: %f,"
+                        + "Vector norm: %f, Vector angle: %f, Slope: %f }",
                 this.p1.toString(), this.p2.toString(), this.i, this.j, this.r, this.theta, this.slope);
     }
 }

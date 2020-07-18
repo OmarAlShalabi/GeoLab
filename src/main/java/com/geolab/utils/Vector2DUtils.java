@@ -8,7 +8,11 @@ public class Vector2DUtils {
         throw new IllegalAccessException("cannot instantiate Utility class");
     }
 
-    public double dotProduct(Vector2D vector1, Vector2D vector2) {
+    public static double dotProduct(Vector2D vector1, Vector2D vector2) {
         return (vector1.getIComponent() * vector2.getIComponent() + vector1.getJComponent() * vector2.getJComponent());
+    }
+
+    public static double crossProductKComponent(Vector2D vector1, Vector2D vector2) {
+        return (vector1.getIComponent() * vector2.getJComponent()) - (vector2.getIComponent() * vector1.getJComponent());
     }
 }

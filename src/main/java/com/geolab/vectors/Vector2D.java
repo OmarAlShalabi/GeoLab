@@ -3,19 +3,20 @@ package com.geolab.vectors;
 import java.util.Objects;
 
 import com.geolab.constants.MainConstants;
+import com.geolab.points.Point;
 import com.geolab.points.Point2D;
 import com.geolab.utils.Point2DUtils;
 
 public class Vector2D {
-    private Point2D p1;
-    private Point2D p2;
+    private Point p1;
+    private Point p2;
     private double i;
     private double j;
     private double r;
     private double theta;
     private double slope;
 
-    public Vector2D(Point2D p1, Point2D p2) {
+    public Vector2D(Point p1, Point p2) {
         Point2D tempP1 = new Point2D(p1.getX(), p1.getY());
         Point2D tempP2 = new Point2D(p2.getX(), p2.getY());
         if (tempP1.equals(tempP2)) {
@@ -38,7 +39,7 @@ public class Vector2D {
     }
 
     private void computeVectorComponents() {
-        Point2D pSubtraction = Point2DUtils.subtractPoints(this.p1, this.p2);
+        Point pSubtraction = Point2DUtils.subtractPoints(this.p1, this.p2);
         this.i = pSubtraction.getX();
         this.j = pSubtraction.getY();
     }
@@ -59,23 +60,23 @@ public class Vector2D {
         return this.theta;
     }
 
-    public void setStartingPoint(Point2D p1) {
+    public void setStartingPoint(Point p1) {
         Point2D tempP1 = new Point2D(p1.getX(), p1.getY());
         this.p1 = tempP1;
         computeAllComponents();
     }
 
-    public void setEndPoint(Point2D p2) {
+    public void setEndPoint(Point p2) {
         Point2D tempP2 = new Point2D(p2.getX(), p2.getY());
         this.p2 = tempP2;
         computeAllComponents();
     }
 
-    public Point2D getStartingPoint() {
+    public Point getStartingPoint() {
         return this.p1;
     }
 
-    public Point2D getEndPoint() {
+    public Point getEndPoint() {
         return this.p2;
     }
 
@@ -91,20 +92,21 @@ public class Vector2D {
         setEndPoint(p2);
     }
 
-    public void scaleVector(Point2D center, double factor) {
-        Point2D tempP1 = Point2DUtils.subtractPoints(center, this.p1);
-        Point2D tempP2 = Point2DUtils.subtractPoints(center, this.p2);
-        tempP1.multiply(factor, factor);
-        tempP2.multiply(factor, factor);
+    public void scaleVector(Point center, double factor) {
+        Point tempP1 = Point2DUtils.subtractPoints(center, this.p1);
+        Point tempP2 = Point2DUtils.subtractPoints(center, this.p2);
+        Point factorPoint = new Point2D(factor, factor);
+        tempP1.multiply(factorPoint);
+        tempP2.multiply(factorPoint);
         tempP1.addTo(center);
         tempP2.addTo(center);
         setStartingPoint(tempP1);
         setEndPoint(tempP2);
     }
 
-    public void rotateVector(Point2D center, double radian) {
-        Point2D tempP1 = Point2DUtils.subtractPoints(center, this.p1);
-        Point2D tempP2 = Point2DUtils.subtractPoints(center, this.p2);
+    public void rotateVector(Point center, double radian) {
+        Point tempP1 = Point2DUtils.subtractPoints(center, this.p1);
+        Point tempP2 = Point2DUtils.subtractPoints(center, this.p2);
         tempP1.rotateAroundOrigin(radian);
         tempP2.rotateAroundOrigin(radian);
         tempP1.addTo(center);

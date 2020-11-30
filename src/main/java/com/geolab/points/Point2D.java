@@ -2,7 +2,7 @@ package com.geolab.points;
 
 import com.geolab.constants.MainConstants;
 
-public class Point2D {
+public class Point2D implements Point {
     private double x;
     private double y;
 
@@ -11,64 +11,62 @@ public class Point2D {
         this.y = y;
     }
 
+    @Override
     public void setX(double x) {
         this.x = x;
     }
 
+    @Override
     public double getX() {
         return this.x;
     }
 
+    @Override
     public void setY(double y) {
         this.y = y;
     }
 
+    @Override
     public double getY() {
         return this.y;
     }
 
+    @Override
+    public void setZ(double y) {
+        throw new IllegalArgumentException("2D points don't have Z component.");
+    }
+
+    @Override
+    public double getZ() {
+        return 0;
+    }
+
+    @Override
     public void swapCoordinates() {
         double temp = x;
         this.x = y;
         this.y = temp;
     }
 
-    public void addTo(double x2, double y2) {
-        this.x += x2;
-        this.y += y2;
-    }
-
-    public void addTo(Point2D p) {
+    @Override
+    public void addTo(Point p) {
         this.x += p.getX();
         this.y += p.getY();
     }
 
-    public void subtractFrom(double x2, double y2) {
-        this.x -= x2;
-        this.y -= y2;
-    }
-
-    public void subtractFrom(Point2D p) {
+    @Override
+    public void subtractFrom(Point p) {
         this.x -= p.getX();
         this.y -= p.getY();
     }
 
-    public void multiply(double x2, double y2) {
-        this.x *= x2;
-        this.y *= y2;
-    }
-
-    public void multiply(Point2D p) {
+    @Override
+    public void multiply(Point p) {
         this.x *= p.getX();
         this.y *= p.getY();
     }
 
-    public void divide(double x2, double y2) {
-        this.x /= x2;
-        this.y /= y2;
-    }
-
-    public void divide(Point2D p) {
+    public void divide(Point p) {
         this.x /= p.getX();
         this.y /= p.getY();
     }

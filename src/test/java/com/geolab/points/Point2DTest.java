@@ -1,9 +1,8 @@
 package com.geolab.points;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class Point2DTest {
 
@@ -24,15 +23,15 @@ public class Point2DTest {
         Point p2 = new Point2D(1.0, 1.0);
         boolean check1 = p1.equals(p2);
         boolean check2 = p2.equals(p1);
-        assertEquals(true, check1);
-        assertEquals(true, check2);
+        assertTrue(check1);
+        assertTrue(check2);
     }
 
     @Test
     public void reflexiveTest() {
         Point p1 = new Point2D(1.0, 1.0);
         boolean check1 = p1.equals(p1);
-        assertEquals(true, check1);
+        assertTrue(check1);
     }
 
     @Test
@@ -87,11 +86,11 @@ public class Point2DTest {
     }
 
     @Test
-    public void swapCoordiantesTest() {
+    public void swapCoordinatesTest() {
         Point p1 = new Point2D(-1.0, 1.0);
-        Point swaped = new Point2D(1.0, -1.0);
+        Point swapped = new Point2D(1.0, -1.0);
         p1.swapCoordinates();
-        assertEquals(swaped, p1);
+        assertEquals(swapped, p1);
     }
 
     @Test

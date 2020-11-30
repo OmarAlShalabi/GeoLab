@@ -1,13 +1,12 @@
 package com.geolab.vectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
 import com.geolab.points.Point2D;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.*;
 
 public class Vector2DTest {
 
@@ -29,7 +28,7 @@ public class Vector2DTest {
     public void reflexiveTest() {
         Vector2D testVector = new Vector2D(new Point2D(0.0, 0.0), new Point2D(0.0, 1.0));
         boolean check1 = testVector.equals(testVector);
-        assertEquals(true, check1);
+        assertTrue(check1);
     }
 
     @Test
@@ -38,8 +37,8 @@ public class Vector2DTest {
         Vector2D testVector2 = new Vector2D(new Point2D(0.0, 0.0), new Point2D(0.0, 1.0));
         boolean check1 = testVector.equals(testVector2);
         boolean check2 = testVector2.equals(testVector);
-        assertEquals(true, check1);
-        assertEquals(true, check2);
+        assertTrue(check1);
+        assertTrue(check2);
     }
 
     @Test

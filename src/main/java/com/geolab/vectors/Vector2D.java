@@ -7,7 +7,7 @@ import com.geolab.points.Point;
 import com.geolab.points.Point2D;
 import com.geolab.utils.Point2DUtils;
 
-public class Vector2D {
+public class Vector2D implements Vector {
     private Point p1;
     private Point p2;
     private double i;
@@ -44,54 +44,70 @@ public class Vector2D {
         this.j = pSubtraction.getY();
     }
 
+    @Override
     public double getIComponent() {
         return this.i;
     }
 
+    @Override
     public double getJComponent() {
         return this.j;
     }
 
+    @Override
+    public double getKComponent() {
+        return 0;
+    }
+
+    @Override
     public double getRComponent() {
         return this.r;
     }
 
-    public double getThetaComponent() {
+    @Override
+    public double getAngleComponent() {
         return this.theta;
     }
 
+    @Override
     public void setStartingPoint(Point p1) {
         Point2D tempP1 = new Point2D(p1.getX(), p1.getY());
         this.p1 = tempP1;
         computeAllComponents();
     }
 
+    @Override
     public void setEndPoint(Point p2) {
         Point2D tempP2 = new Point2D(p2.getX(), p2.getY());
         this.p2 = tempP2;
         computeAllComponents();
     }
 
+    @Override
     public Point getStartingPoint() {
         return this.p1;
     }
 
+    @Override
     public Point getEndPoint() {
         return this.p2;
     }
 
+    @Override
     public double getSlope() {
         return slope;
     }
 
-    public void translateVector(Vector2D vector) {
-        Vector2D tempVector = new Vector2D(vector.getStartingPoint(), vector.getEndPoint());
+    @Override
+    public void translateVector(Vector vector) {
+        Vector tempVector = new Vector2D(vector.getStartingPoint(), vector.getEndPoint());
         this.p1.addTo(tempVector.getStartingPoint());
         this.p2.addTo(tempVector.getEndPoint());
         setStartingPoint(p1);
         setEndPoint(p2);
     }
 
+    @Override
     public void scaleVector(Point center, double factor) {
         Point tempP1 = Point2DUtils.subtractPoints(center, this.p1);
         Point tempP2 = Point2DUtils.subtractPoints(center, this.p2);
@@ -104,6 +120,7 @@ public class Vector2D {
         setEndPoint(tempP2);
     }
 
+    @Override
     public void rotateVector(Point center, double radian) {
         Point tempP1 = Point2DUtils.subtractPoints(center, this.p1);
         Point tempP2 = Point2DUtils.subtractPoints(center, this.p2);

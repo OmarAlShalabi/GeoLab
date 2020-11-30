@@ -122,7 +122,7 @@ public class Point2DTest {
     public void swapCoordiantesTest() {
         Point2D p1 = new Point2D(-1.0, 1.0);
         Point2D swaped = new Point2D(1.0, -1.0);
-        p1.swapCoordiantes();
+        p1.swapCoordinates();
         assertEquals(swaped, p1);
     }
 

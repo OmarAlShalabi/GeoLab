@@ -1,7 +1,5 @@
 package com.geolab.points;
 
-import java.util.Objects;
-
 import com.geolab.constants.MainConstants;
 
 public class Point2D {
@@ -9,8 +7,8 @@ public class Point2D {
     private double y;
 
     public Point2D(double x, double y) {
-        this.x = Objects.requireNonNull(x);
-        this.y = Objects.requireNonNull(y);
+        this.x = x;
+        this.y = y;
     }
 
     public void setX(double x) {
@@ -29,7 +27,7 @@ public class Point2D {
         return this.y;
     }
 
-    public void swapCoordiantes() {
+    public void swapCoordinates() {
         double temp = x;
         this.x = y;
         this.y = temp;

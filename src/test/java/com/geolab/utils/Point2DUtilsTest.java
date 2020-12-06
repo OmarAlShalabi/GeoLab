@@ -1,12 +1,12 @@
 package com.geolab.utils;
 
-import static org.junit.Assert.assertEquals;
-
 import com.geolab.points.Point;
 import com.geolab.points.Point2D;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class Point2DUtilsTest {
 
@@ -43,5 +43,20 @@ public class Point2DUtilsTest {
     public void multiplyPoints() {
         Point pMul = Point2DUtils.multiplyPoints(p3, p3);
         assertEquals(pMul, new Point2D(4.0, 4.0));
+    }
+
+    @Test
+    public void testSwapPoints() {
+        Point2DUtils.swapPoints(p1, p3);
+        assertEquals(new Point2D(1.0, 1.0), p3);
+        assertEquals(new Point2D(2.0, 2.0), p1);
+    }
+
+    @Test
+    public void testIsPointStrictlyGreaterThan() {
+        assertTrue(Point2DUtils.isPointStrictlyGreaterThan(p3, p1));
+        assertFalse(Point2DUtils.isPointStrictlyGreaterThan(p1, p3));
+        assertFalse(Point2DUtils.isPointStrictlyGreaterThan(p1, p2));
+
     }
 }

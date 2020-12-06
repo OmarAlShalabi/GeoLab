@@ -2,6 +2,8 @@ package com.geolab.utils;
 
 import com.geolab.points.Point;
 import com.geolab.points.Point2D;
+import com.geolab.vectors.Vector;
+import com.geolab.vectors.Vector2D;
 
 public class Point2DUtils {
 
@@ -31,5 +33,22 @@ public class Point2DUtils {
         Point p3 = new Point2D(p2.getX(),p2.getY());
         p3.divide(p1);
         return p3;
+    }
+
+    public static void swapPoints(Point p1, Point p2) {
+        Point temp = new Point2D(p1.getX(), p1.getY());
+        p1.setX(p2.getX());
+        p1.setY(p2.getY());
+        p2.setX(temp.getX());
+        p2.setY(temp.getY());
+    }
+
+    public static boolean isPointStrictlyGreaterThan(Point p1, Point p2) {
+        Point offestPoint = new Point2D(1.0,1.0);
+        Vector offsetVector = new Vector2D(new Point2D(0,0), offestPoint);
+        Vector v1 = new Vector2D(new Point2D(0,0), addPoints(p1,offestPoint));
+        Vector v2 = new Vector2D(new Point2D(0,0), addPoints(p2,offestPoint));
+        return (v1.getRComponent() - offsetVector.getRComponent()) >
+                (v2.getRComponent() - offsetVector.getRComponent());
     }
 }
